@@ -34,6 +34,7 @@ function Enunciado() {
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     });
 }
+
 function MostrarGrilla() {
 
     var pagina = "./administracion.php";
@@ -75,11 +76,40 @@ function CargarFormUsuario() {
     });
 
 }
+
 function AgregarUsuario() {
 
-//implementar...
+    var pagina      = "./administracion.php";
+    var nombre      = $("#txtNombre").val();
+    var email       = $("#txtEmail").val();
+    var password    = $("#txtPassword").val();
+    var perfil      = $("#cboPerfiles").val();
+    var user        = { "nombre":nombre, "email":email, "pass":password, "perfil":perfil };
+
+    alert(user);
+    $.ajax({
+        type: 'POST',
+        url: pagina,
+        dataType: "json",
+        data: {
+            queMuestro: "ALTA_USUARIO",
+            usuario: user
+        },
+        async: true
+    }).then(function ok(objJson){
+
+            if (!objJson.Exito) {
+                alert(objJson.Mensaje);
+                return;
+            }
+            alert(objJson.Mensaje);
+            MostrarGrilla();
+    }, function fail(jqXHR, textStatus, errorThrown){
+        alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+    });
 
 }
+
 function EditarUsuario(obj) {//#sin case
 
     var pagina = "./administracion.php";

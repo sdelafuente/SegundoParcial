@@ -32,15 +32,15 @@ $perfiles = Usuario::TraerTodosLosPerfiles();
     <input type="hidden" id="hdnIdUsuario" value="<?php echo $id; ?>" />
     <input type="text" placeholder="Nombre" id="txtNombre" value="<?php echo $nombre; ?>" />
     <input type="text" placeholder="E-mail" id="txtEmail" value="<?php echo $email; ?>" />
-    <input type="password" placeholder="Password" id="txtPassword" value="" />
+    <input type="password" placeholder="Password" id="txtPassword" value="" required/>
 
     <span>Perfil</span>
     <select id="cboPerfiles" >
         <?php
-        foreach ($perfiles AS $p) {
-            $miPerfil = isset($usuario->perfil) ? $usuario->perfil : "";
-            $selected = $miPerfil == $p["perfil"] ? "selected" : "";
-            echo "<option value='" . $p["perfil"] . "' " . $selected . ">" . $p["perfil"] . "</option>";
+            foreach ($perfiles AS $p) {
+                $miPerfil = isset($usuario->perfil) ? $usuario->perfil : "";
+                $selected = $miPerfil == $p["perfil"] ? "selected" : "";
+                echo "<option value='" . $p["perfil"] . "' " . $selected . ">" . $p["perfil"] . "</option>";
         }
         ?>	
     </select>
