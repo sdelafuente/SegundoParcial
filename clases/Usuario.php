@@ -94,16 +94,23 @@ class Usuario {
     public static function Modificar($obj) {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
         
+        /*
         $sql = "UPDATE usuarios 
                 SET nombre = :nombre, email = :email, password = :pass, 
-                perfil = :perfil --, foto = :foto 
-                WHERE id=:id";
-        
+                perfil = :perfil , foto = :foto 
+                WHERE id=:id"; 
+        */        
+        $sql = "UPDATE  usuarios 
+                SET     nombre = :nombre, 
+                        email = :email,  
+                        perfil = :perfil
+                WHERE id=:id";       
+
         $consulta = $objetoAccesoDato->RetornarConsulta($sql);
-        $consulta->bindValue(':id', $obj->id, PDO::PARAM_INT);
+        $consulta->bindValue(':id',     $obj->id, PDO::PARAM_INT);
         $consulta->bindValue(':nombre', $obj->nombre, PDO::PARAM_STR);
-        $consulta->bindValue(':email', $obj->email, PDO::PARAM_STR);
-        $consulta->bindValue(':pass', $obj->pass, PDO::PARAM_STR);
+        $consulta->bindValue(':email',  $obj->email, PDO::PARAM_STR);
+        //$consulta->bindValue(':pass',   $obj->pass, PDO::PARAM_STR);
         $consulta->bindValue(':perfil', $obj->perfil, PDO::PARAM_STR);
        // $consulta->bindValue(':foto', $obj->foto, PDO::PARAM_STR);
         $consulta->execute();
@@ -111,6 +118,14 @@ class Usuario {
         return $consulta->rowCount();
     }
 
+    public static function Eliminar($id) {
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+        $consulta = $objetoAccesoDato->RetornarConsulta("DELETE FROM usuarios WHERE id = :id");
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+        return $consulta->rowCount();
+    }
+    
     public static function TraerTodosLosUsuarios() {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -120,6 +135,7 @@ class Usuario {
         $consulta = $objetoAccesoDato->RetornarConsulta($sql);
         $consulta->execute();
 
+        //return $consulta->fetchall(PDO::FETCH_CLASS, "Usuario");
         return $consulta->fetchall(PDO::FETCH_CLASS, "Usuario");
     }
 
@@ -135,12 +151,6 @@ class Usuario {
         return $consulta->fetchall(PDO::FETCH_ASSOC);
     }
 
-    public static function Borrar($id) {
-        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        $consulta = $objetoAccesoDato->RetornarConsulta("DELETE FROM usuarios WHERE id = :id");
-        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
-        $consulta->execute();
-        return $consulta->rowCount();
-    }
+
 //--------------------------------------------------------------------------------//
 }
