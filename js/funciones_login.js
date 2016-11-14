@@ -1,7 +1,6 @@
 function Login() {
 
     var pagina = "./admin_login.php";
-
     
     var usuario = {email: $("#email").val(), pass: $("#password").val()};
 
