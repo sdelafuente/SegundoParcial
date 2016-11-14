@@ -228,17 +228,13 @@ function Logout() {//#5
             queMuestro: "LOGOUT"
         },
         async: true
-    })
-    .done(function (html) {
-
-        window.location.href = "login.php?uss=1";
-
-    })
-    .fail(function (jqXHR, textStatus, errorThrown) {
+    }).then(function ok(html){
+            window.location.href = "login.php";
+    }, function fail(jqXHR, textStatus, errorThrown){
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     });
-
 }
+
 function traerCdsConWS(){
     
 //implementar...
