@@ -29,11 +29,18 @@ class Usuario {
 //--------------------------------------------------------------------------------//
     
     public static function TraerUsuarioLogueado($obj) {
+
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-        $sql = "SELECT U.id, U.nombre, U.email, U.perfil,-- U.foto
+        /*
+        $sql = "SELECT U.id, U.nombre, U.email, U.perfil, U.foto
                 FROM usuarios U
                 WHERE U.email = :email AND U.password = :pass";
+        */
+        $sql = "SELECT U.id, U.nombre, U.email, U.perfil
+                FROM usuarios U
+                WHERE U.email = :email AND U.password = :pass";
+
 
         $consulta = $objetoAccesoDato->RetornarConsulta($sql);
         $consulta->bindValue(':email', $obj->email, PDO::PARAM_STR);

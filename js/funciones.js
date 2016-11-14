@@ -43,7 +43,6 @@ function MostrarGrilla() {
             type:"POST",
             url:pagina,
             dataType: "html",
-            //dataType: "json",
             data: {
                 queMuestro:"MOSTRAR_GRILLA"
             }
@@ -147,8 +146,6 @@ function ModificarUsuario() {//#3a
     var perfil      = $("#cboPerfiles").val();
     var user        = { "id":id,"nombre":nombre, "email":email, "pass":password, "perfil":perfil };
     
-    //alert(user);
-
     if (!confirm("Modificar USUARIO?")) {
         return;
     }

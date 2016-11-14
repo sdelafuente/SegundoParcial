@@ -2,7 +2,8 @@ function Login() {
 
     var pagina = "./admin_login.php";
 
-    var usuario = {Email: $("#email").val(), Password: $("#password").val()};
+    
+    var usuario = {email: $("#email").val(), pass: $("#password").val()};
 
     $.ajax({
         type: 'POST',
