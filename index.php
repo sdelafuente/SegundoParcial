@@ -24,27 +24,26 @@ $user = $_SESSION["Usuario"];
                 <?php
                 /* Decodifico elJson en un objeto */
                 $objUser = json_decode($user);
-                
+                $botones = "";
+                $botones .= "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Enunciado()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Enunciado</a>";
+
                 /* Dependiendo del perfil veo que mostrar en el menu */
                 switch ($objUser->perfil) {
                     case 'administrador':
-                            echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Enunciado()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Enunciado</a>";
-                            echo "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
-                            echo "<a class='btn btn-info animated bounceInLeft' href='#' onclick='CargarFormUsuario()'><span class='glyphicon glyphicon-user'>&nbsp;</span><span class='glyphicon glyphicon-plus-sign'></span>Agregar Usuario&nbsp;</a>";
-                            echo "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario(" . ($user) . ")'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
-                            echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";                        # code...
+                             $botones .= "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
+                             $botones .= "<a class='btn btn-info animated bounceInLeft' href='#' onclick='CargarFormUsuario()'><span class='glyphicon glyphicon-user'>&nbsp;</span><span class='glyphicon glyphicon-plus-sign'></span>Agregar Usuario&nbsp;</a>";
+                             $botones .= "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario(" . ($user) . ")'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
                         break;
                     case 'usuario':
-                            echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Enunciado()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Enunciado</a>";
-                            echo "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
-                            echo "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario(" . ($user) . ")'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
-                            echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";
-                        break;                    
-                    case 'invitado':
-                            echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Enunciado()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Enunciado</a>";
-                            echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";
-                        break;
+                            $botones .= "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
+                            $botones .= "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario(" . ($user) . ")'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
+
+                        break;  
                 }
+                $botones .= "<a class='btn btn-warning animated bounceInLeft' href='#' onclick='traerCdsConWS()'><span class='glyphicon glyphicon-fire'></span>Productos</a>";
+                $botones .= "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";
+
+                echo $botones;                    
 
                 /*
                 echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Enunciado()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Enunciado</a>";

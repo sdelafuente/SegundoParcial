@@ -17,9 +17,9 @@ function Login() {
 
         if (!objJson.Exito) {
             alert(objJson.Mensaje);
-            return;
+            window.location.href = "login.php";
+            //return;
         }
-
         window.location.href = "index.php";
 
     })

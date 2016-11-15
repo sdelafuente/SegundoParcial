@@ -104,6 +104,7 @@ function AgregarUsuario() {
                 return;
             }
             alert(objJson.Mensaje);
+            CargarFormUsuario();
             MostrarGrilla();
     }, function fail(jqXHR, textStatus, errorThrown){
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
@@ -237,6 +238,20 @@ function Logout() {//#5
 
 function traerCdsConWS(){
     
-//implementar...
+    var pagina = "./administracion.php";
+
+    $.ajax({
+        type: 'POST',
+        url: pagina,
+        dataType: "html",
+        data: {
+            queMuestro: "TRAER_CDS"
+        },
+        async: true        
+    }).then(function succes(html){
+        $("#divGrilla").html(html);       
+    }, function fail(jqXHR, textStatus, errorThrown){
+        alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+    });
 
 }
